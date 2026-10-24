@@ -1,0 +1,328 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="description" content="Local redaction and encrypted text capsules. Share the bug. Keep the secrets.">
+
+  <title>VeilDrop · Private by practice</title>
+
+  <link rel="stylesheet" href="/style.css">
+  <script type="module" src="/app.js"></script>
+</head>
+
+<body>
+  <header>
+    <a class="brand" href="/" aria-label="VeilDrop home">
+      <span class="logo">V<span>▸</span></span>
+      VeilDrop
+      <span class="version">/ 0.1</span>
+    </a>
+
+    <span class="local">
+      <i></i>
+      LOCAL SESSION
+    </span>
+  </header>
+
+  <main>
+
+    <section class="hero">
+      <div>
+        <p class="eyebrow">YOUR CONTEXT. YOUR CONTROL.</p>
+
+        <h1>
+          Share the bug.<br>
+          <span>Keep the secrets.</span>
+        </h1>
+
+        <p class="intro">
+          Clean up logs before they leave your screen.<br>
+          Make a private capsule when words need a lock.
+        </p>
+      </div>
+
+      <div class="hero-note">
+        <span class="orbit">✳</span>
+
+        <p>
+          No account. No uploads.<br>
+          Just your browser, doing the work.
+        </p>
+      </div>
+    </section>
+
+    <nav aria-label="Workspace mode">
+      <button
+        class="tab active"
+        id="redact-tab"
+        aria-pressed="true"
+      >
+        01 <strong>Redact & share</strong>
+      </button>
+
+      <button
+        class="tab"
+        id="open-tab"
+        aria-pressed="false"
+      >
+        02 <strong>Open a capsule</strong>
+      </button>
+
+      <span class="nav-note">NO RUNTIME DEPENDENCIES</span>
+    </nav>
+
+    <section id="redact-panel">
+
+      <div class="toolbar">
+        <p>
+          <span class="dot"></span>
+          Ready for your next bug report
+        </p>
+
+        <div>
+          <button id="demo" class="quiet">
+            Load example ↗
+          </button>
+
+          <label class="button quiet">
+            Import text
+            <input
+              id="import"
+              type="file"
+              accept=".txt,.log,.env,.json,.yaml,.yml,.md,.csv"
+              hidden
+            >
+          </label>
+
+          <button id="clear" class="quiet">
+            Clear session
+          </button>
+        </div>
+      </div>
+
+      <div class="editors">
+
+        <article class="editor">
+          <div class="editor-heading">
+            <label for="source">Source text</label>
+            <span>STAYS ON THIS DEVICE</span>
+          </div>
+
+          <textarea
+            id="source"
+            spellcheck="false"
+            autocomplete="off"
+            placeholder="Paste logs, a .env file, or a prompt…"
+          ></textarea>
+
+          <div class="editor-footer">
+            <span id="source-size">0 bytes / 1 MiB</span>
+            <span>UTF-8</span>
+          </div>
+        </article>
+
+        <article class="editor output">
+          <div class="editor-heading">
+            <label for="result">Shareable draft</label>
+            <span id="match-count">0 MATCHES</span>
+          </div>
+
+          <textarea
+            id="result"
+            readonly
+            spellcheck="false"
+            placeholder="Your redacted draft appears here."
+          ></textarea>
+
+          <div class="editor-footer">
+            <span id="unique-count">
+              Pattern-based protection
+            </span>
+            <span>REVIEW BEFORE SHARING</span>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="bottom-grid">
+
+        <section class="controls">
+          <h2>Fine-tune the filter</h2>
+
+          <label class="check">
+            <input
+              type="checkbox"
+              id="personal"
+              checked
+            >
+            Also redact email addresses and IPv4 addresses
+          </label>
+
+          <label for="custom" class="small-label">
+            Custom secrets
+            <span>One exact value per line · 3+ characters</span>
+          </label>
+
+          <textarea
+            id="custom"
+            rows="2"
+            spellcheck="false"
+            autocomplete="off"
+            placeholder="Customer name, internal hostname, project code…"
+          ></textarea>
+
+          <p class="muted">
+            Patterns can miss secrets. Review the draft; add anything missed above.
+          </p>
+        </section>
+
+        <section class="actions">
+          <h2>Ready to hand off?</h2>
+
+          <div class="action-row">
+            <button id="copy" class="primary">
+              Copy draft <span>↗</span>
+            </button>
+
+            <button id="download" class="secondary">
+              Save .txt
+            </button>
+          </div>
+
+          <details id="seal-details">
+            <summary>
+              Or create an encrypted capsule <span>+</span>
+            </summary>
+
+            <label for="passphrase" class="small-label">
+              Passphrase · minimum 16 characters
+            </label>
+
+            <div class="password-row">
+              <input
+                id="passphrase"
+                type="password"
+                autocomplete="new-password"
+                maxlength="1024"
+              >
+
+              <button id="generate" class="secondary">
+                Generate
+              </button>
+            </div>
+
+            <label class="check">
+              <input
+                id="show-password"
+                type="checkbox"
+              >
+              Show passphrase
+            </label>
+
+            <button id="seal" class="secondary wide">
+              Encrypt draft & download .veil
+            </button>
+
+            <p class="muted">
+              Keep the passphrase: there is no recovery. Send it through a separate channel.
+            </p>
+          </details>
+        </section>
+
+      </div>
+
+      <div class="findings">
+        <h2>What we found</h2>
+
+        <div id="findings">
+          <span class="muted">
+            Matches appear here without exposing their original values.
+          </span>
+        </div>
+      </div>
+
+    </section>
+
+    <section id="open-panel" hidden>
+      <div class="unlock-card">
+
+        <span class="eyebrow">A PRIVATE HANDOFF</span>
+
+        <h2>Unlock a capsule.</h2>
+
+        <p class="muted">
+          Choose a .veil file and enter its passphrase. Decryption happens here.
+        </p>
+
+        <label for="capsule-file" class="small-label">
+          Encrypted capsule
+        </label>
+
+        <input
+          id="capsule-file"
+          type="file"
+          accept=".veil,application/json"
+        >
+
+        <label for="unlock-password" class="small-label">
+          Passphrase
+        </label>
+
+        <input
+          id="unlock-password"
+          type="password"
+          autocomplete="off"
+          maxlength="1024"
+        >
+
+        <button id="unlock" class="primary wide">
+          Unlock capsule ↗
+        </button>
+
+        <label for="opened" class="small-label">
+          Decrypted text
+        </label>
+
+        <textarea
+          id="opened"
+          readonly
+          rows="10"
+          spellcheck="false"
+          placeholder="Unlocked content appears here."
+        ></textarea>
+
+        <button id="save-opened" class="secondary">
+          Save decrypted .txt
+        </button>
+
+        <button id="clear-opened" class="quiet">
+          Clear decrypted text
+        </button>
+
+      </div>
+    </section>
+
+    <div
+      id="status"
+      role="status"
+      aria-live="polite"
+    >
+      Everything stays in memory until you copy or download it.
+    </div>
+
+    <footer>
+      <span>
+        VEILDROP <b> / </b> BUILT FOR THE HANDOFF
+      </span>
+
+      <span>
+        AES-256-GCM · NO TELEMETRY · OPEN SOURCE · © OKAN TIKTAS
+      </span>
+    </footer>
+
+  </main>
+</body>
+</html>

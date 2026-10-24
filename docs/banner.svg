@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640" role="img" aria-labelledby="title desc">
+<title id="title">VeilDrop — Share the bug. Keep the secrets.</title><desc id="desc">Project cover showing a fictional API key replaced by a placeholder, with local processing and encrypted handoffs.</desc>
+<rect width="1280" height="640" fill="#10120f"/><path d="M0 540H1280M760 0V640" stroke="#33382d"/>
+<rect x="64" y="57" width="44" height="44" rx="4" fill="#cef774"/><text x="75" y="89" fill="#182010" font-family="sans-serif" font-size="31" font-weight="bold">V</text>
+<text x="122" y="89" fill="#edf0e6" font-family="sans-serif" font-size="30" font-weight="bold">VeilDrop</text>
+<text x="65" y="169" fill="#cef774" font-family="monospace" font-size="13" letter-spacing="3">YOUR CONTEXT. YOUR CONTROL.</text>
+<g font-family="sans-serif" font-size="67" font-weight="bold" letter-spacing="-2"><text x="60" y="261" fill="#edf0e6">Share the bug.</text><text x="60" y="339" fill="#cef774">Keep the secrets.</text></g>
+<g fill="#a4ad98" font-family="sans-serif" font-size="22"><text x="65" y="404">Local redaction. Encrypted text capsules.</text><text x="65" y="438">A browser workspace and a CLI, together.</text></g>
+<rect x="816" y="141" width="403" height="343" rx="12" fill="#191c17" stroke="#33382d"/>
+<g font-family="monospace" font-size="14"><text x="842" y="182" fill="#a4ad98">01 / FICTIONAL SOURCE</text><text x="842" y="228" fill="#edf0e6">API_KEY=demo_secret</text><text x="842" y="260" fill="#edf0e6">status=500 retry=3</text><path d="M843 290H1190" stroke="#33382d"/><text x="842" y="331" fill="#a4ad98">02 / REVIEWABLE DRAFT</text><text x="842" y="377" fill="#cef774">API_KEY=[SECRET_1]</text><text x="842" y="409" fill="#cef774">status=500 retry=3</text></g>
+<g fill="#a4ad98" font-family="monospace" font-size="14" letter-spacing="1"><text x="65" y="591">NO ACCOUNT · NO UPLOAD API · ZERO RUNTIME DEPENDENCIES</text><text x="908" y="591">BUILT FOR THE HANDOFF</text></g></svg>
