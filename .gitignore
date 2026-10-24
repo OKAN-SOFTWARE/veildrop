@@ -1,0 +1,15 @@
+node_modules/
+.env
+.env.*
+*.log
+*.veil
+private-*
+reviewed.txt
+restored.txt
+veildrop-draft.txt
+veildrop-decrypted.txt
+coverage/
+test-results/
+playwright-report/
+.DS_Store
+Thumbs.db
